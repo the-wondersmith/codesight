@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use codesight in research, content, or production work, please cite it as below."
+title: "codesight: AI context generator for codebases"
+abstract: "Universal AI context generator that maps routes, schema, components, dependencies, and middleware for Claude Code, Cursor, Copilot, Codex, and any AI coding tool. Zero runtime dependencies, AST precision for TypeScript, regex detection for 30+ frameworks across 14 languages."
+authors:
+  - family-names: Khumar
+    given-names: Kailesk
+    affiliation: "HouseofMVPs and Kailxlabs"
+    website: "https://www.kailxlabs.co"
+    email: "houseofmvps2024@gmail.com"
+repository-code: "https://github.com/Houseofmvps/codesight"
+url: "https://houseofmvps.com"
+license: MIT
+type: software
+keywords:
+  - ai
+  - context-engineering
+  - claude-code
+  - cursor
+  - copilot
+  - token-optimization
+  - codebase-mapping
+  - generative-engine-optimization
+identifiers:
+  - type: url
+    value: "https://www.npmjs.com/package/codesight"
+    description: "npm package"
+  - type: url
+    value: "https://github.com/Houseofmvps/codesight"
+    description: "GitHub repository"
