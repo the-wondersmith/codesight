@@ -2,9 +2,9 @@
 
 > **Stack:** raw-http | none | unknown | typescript
 
-> 4 routes (8 inferred) + 1 graphql + 3 ws | 0 models | 0 components | 61 lib files | 5 env vars | 1 middleware | 6 events | 60% test coverage
-> **Token savings:** this file is ~4,400 tokens. Without it, AI exploration would cost ~30,200 tokens. **Saves ~25,700 tokens per conversation.**
-> **Last scanned:** 2026-04-25 11:57 — re-run after significant changes
+> 4 routes (8 inferred) + 1 graphql + 3 ws | 0 models | 0 components | 61 lib files | 6 env vars | 5 middleware | 11 events | 60% test coverage
+> **Token savings:** this file is ~4,700 tokens. Without it, AI exploration would cost ~32,300 tokens. **Saves ~27,600 tokens per conversation.**
+> **Last scanned:** 2026-05-11 18:28 — re-run after significant changes
 
 ---
 
@@ -189,14 +189,16 @@
 
 ## Environment Variables
 
-- `DATABASE_URL` **required** — tests/detectors.test.ts
-- `PORT` **required** — tests/detectors.test.ts
+- `DATABASE_URL` **required** — tests/fixtures/config-app/.env.example
+- `JWT_SECRET` **required** — tests/fixtures/config-app/.env.example
+- `PORT` (has default) — tests/fixtures/config-app/.env.example
 - `VAR` **required** — src/detectors/config.ts
 - `VAR_NAME` **required** — src/detectors/config.ts
 - `VITE_VAR_NAME` **required** — src/detectors/config.ts
 
 ## Config Files
 
+- `tests/fixtures/config-app/.env.example`
 - `tsconfig.json`
 
 ---
@@ -205,6 +207,12 @@
 
 ## auth
 - middleware — `src/detectors/middleware.ts`
+- auth — `tests/fixtures/graph-app/src/auth.ts`
+- middleware — `tests/fixtures/graph-app/src/middleware.ts`
+- auth — `tests/fixtures/middleware-app/src/middleware/auth.ts`
+
+## rate-limit
+- rate-limit — `tests/fixtures/middleware-app/src/middleware/rate-limit.ts`
 
 ---
 
@@ -268,12 +276,20 @@
 - `event-name` [event] — `src/detectors/events.ts`
 - `) || content.includes(` [event] — `src/detectors/events.ts`
 
+## celery
+
+- `tests.fixtures.celery-detect.tasks.ping` [queue] → celery-task — `tests/fixtures/celery-detect/tasks.py`
+- `tests.fixtures.celery-events.tasks.add` [queue] → celery-task — `tests/fixtures/celery-events/tasks.py`
+- `tests.fixtures.celery-events.tasks.cleanup` [queue] → celery-task — `tests/fixtures/celery-events/tasks.py`
+- `billing.report_usage_to_stripe` [queue] → celery-task — `tests/fixtures/celery-events/tasks.py`
+- `tests.fixtures.python-celery-workspace.services.worker-service.tasks.sync_users` [queue] → celery-task — `tests/fixtures/python-celery-workspace/services/worker-service/tasks.py`
+
 ---
 
 # Test Coverage
 
 > **60%** of routes and models are covered by tests
-> 20 test files found
+> 155 test files found
 
 ## Covered Routes
 

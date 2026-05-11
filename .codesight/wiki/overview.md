@@ -6,7 +6,7 @@
 
 ## Scale
 
-8 API routes · 61 library files · 1 middleware layers · 5 environment variables
+8 API routes · 61 library files · 5 middleware layers · 6 environment variables
 
 ## Subsystems
 
@@ -31,11 +31,11 @@ Changes to these files have the widest blast radius across the codebase:
 
 ## Required Environment Variables
 
-- `DATABASE_URL` — `tests/detectors.test.ts`
-- `PORT` — `tests/detectors.test.ts`
+- `DATABASE_URL` — `tests/fixtures/config-app/.env.example`
+- `JWT_SECRET` — `tests/fixtures/config-app/.env.example`
 - `VAR` — `src/detectors/config.ts`
 - `VAR_NAME` — `src/detectors/config.ts`
 - `VITE_VAR_NAME` — `src/detectors/config.ts`
 
 ---
-_Back to [index.md](./index.md) · Generated 2026-04-25_
+_Back to [index.md](./index.md) · Generated 2026-05-11_
