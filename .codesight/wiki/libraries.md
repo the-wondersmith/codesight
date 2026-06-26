@@ -2,15 +2,16 @@
 
 > **Navigation aid.** Library inventory extracted via AST. Read the source files listed here before modifying exported functions.
 
-**64 library files** across 14 modules
+**65 library files** across 14 modules
 
-## Plugins (18 files)
+## Plugins (19 files)
 
 - `src/plugins/terraform/hcl-parser.ts` — parseHclFile, parseTfvars, stripComments, extractBraceBlock
 - `src/plugins/terraform/file-collector.ts` — collectTfFiles, readFileSafe, CollectedFiles
 - `src/plugins/terraform/service-matcher.ts` — matchServiceBlocks, normaliseServiceName, ScoredBlock
 - `src/plugins/cicd/index.ts` — createCICDPlugin, CICDPluginConfig
 - `src/plugins/cicd/yaml-parser.ts` — parseYAML, parseFlowSequence
+- `src/plugins/index.ts` — createBuiltinPlugins, BUILTIN_PLUGIN_NAMES
 - `src/plugins/skills/index.ts` — createSkillsPlugin, Skill
 - `src/plugins/terraform/extractor.ts` — extractServiceInfrastructure, extractEnvironments
 - `src/plugins/cicd/circleci.ts` — extractCircleCIWorkflows

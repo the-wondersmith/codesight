@@ -140,6 +140,7 @@
 - `src/plugins/githooks/index.ts` — function createGitHooksPlugin: () => CodesightPlugin
 - `src/plugins/githooks/lefthook.ts` — function parseLefthook: (root) => Promise<GitHook[]>
 - `src/plugins/githooks/raw.ts` — function parseRawHooks: (root) => Promise<GitHook[]>
+- `src/plugins/index.ts` — function createBuiltinPlugins: (disabled) => void, const BUILTIN_PLUGIN_NAMES
 - `src/plugins/skills/formatter.ts` — function formatSkills: (skills) => string
 - `src/plugins/skills/index.ts` — function createSkillsPlugin: () => CodesightPlugin, interface Skill
 - `src/plugins/terraform/extractor.ts` — function extractServiceInfrastructure: (matchedBlocks, allBlocks, config) => ServiceInfrastructure, function extractEnvironments: (tfvarsFiles, serviceName) => Promise<Record<string, EnvironmentOverrides>>

@@ -2,7 +2,7 @@
 
 ## Most Imported Files (change these carefully)
 
-- `src/types.ts` — imported by **49** files
+- `src/types.ts` — imported by **50** files
 - `src/scanner.ts` — imported by **16** files
 - `src/ast/loader.ts` — imported by **6** files
 - `src/plugins/terraform/types.ts` — imported by **6** files
@@ -25,7 +25,7 @@
 
 ## Import Map (who imports what)
 
-- `src/types.ts` ← `src/ast/extract-android.ts`, `src/ast/extract-brighterscript.ts`, `src/ast/extract-brightscript.ts`, `src/ast/extract-components.ts`, `src/ast/extract-csharp.ts` +44 more
+- `src/types.ts` ← `src/ast/extract-android.ts`, `src/ast/extract-brighterscript.ts`, `src/ast/extract-brightscript.ts`, `src/ast/extract-components.ts`, `src/ast/extract-csharp.ts` +45 more
 - `src/scanner.ts` ← `src/core.ts`, `src/detectors/components.ts`, `src/detectors/config.ts`, `src/detectors/contracts.ts`, `src/detectors/coverage.ts` +11 more
 - `src/ast/loader.ts` ← `src/ast/extract-components.ts`, `src/ast/extract-routes.ts`, `src/ast/extract-schema.ts`, `src/detectors/components.ts`, `src/detectors/routes.ts` +1 more
 - `src/plugins/terraform/types.ts` ← `src/plugins/terraform/file-collector.ts`, `src/plugins/terraform/formatter.ts`, `src/plugins/terraform/hcl-parser.ts`, `src/plugins/terraform/index.ts`, `src/plugins/terraform/index.ts` +1 more

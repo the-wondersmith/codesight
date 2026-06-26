@@ -6,7 +6,7 @@
 
 ## Scale
 
-8 API routes · 64 library files · 5 middleware layers · 10 environment variables
+8 API routes · 65 library files · 5 middleware layers · 10 environment variables
 
 ## Subsystems
 
@@ -16,13 +16,13 @@
 - **[Infra](./infra.md)** — 1 routes — touches: auth, db, cache, queue, payment
 - **[Api](./api.md)** — 1 routes — touches: auth, db, cache, queue, email
 
-**Libraries:** 64 files — see [libraries.md](./libraries.md)
+**Libraries:** 65 files — see [libraries.md](./libraries.md)
 
 ## High-Impact Files
 
 Changes to these files have the widest blast radius across the codebase:
 
-- `src/types.ts` — imported by **49** files
+- `src/types.ts` — imported by **50** files
 - `src/scanner.ts` — imported by **16** files
 - `src/ast/loader.ts` — imported by **6** files
 - `src/plugins/terraform/types.ts` — imported by **6** files
