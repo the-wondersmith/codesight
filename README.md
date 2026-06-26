@@ -308,8 +308,16 @@ codesight runs all 8 detectors in parallel, then writes the results as structure
   config.md        Every env var (required vs default), config files, key deps
   middleware.md    Auth, rate limiting, CORS, validation, logging, error handlers
   graph.md         Which files import what and which break the most things if changed
+  cicd.md          GitHub Actions / CircleCI pipelines (when present)
+  githooks.md      lefthook / husky / raw .git/hooks (when present)
+  skills.md        .claude/commands + .claude/skills (when present)
   report.html      Interactive visual dashboard (with --html or --open)
 ```
+
+The last three come from **built-in plugins** that scan the dotfile directories
+(`.github/`, `.husky/`, `.claude/`) the main pass skips. They run automatically
+and stay silent on projects without those files — so they only ever add a
+section when there's something to report.
 
 ## AST Precision
 
@@ -345,6 +353,35 @@ does not currently ship any WASM-based plugins itself; it only supports the
 possibility of user-supplied plugins, and falls back to its built-in extractors
 when none are found. To build a conforming plugin, see the contract
 reference: [`docs/wasm-plugins.md`](docs/wasm-plugins.md).
+
+## Built-in plugins
+
+Three first-party plugins run on every scan and surface context the main pass
+misses because it lives in skipped dotfile directories. Each is inert until its
+target files exist, so they cost nothing on projects that don't use them:
+
+| Plugin | Reads | Output |
+|---|---|---|
+| `cicd` | `.github/workflows/`, `.circleci/` | Pipeline triggers, jobs, secrets, deploy targets |
+| `githooks` | lefthook / husky config, `.git/hooks/` | Which commands run on which git lifecycle |
+| `skills` | `.claude/commands/`, `.claude/skills/` | Available slash commands / agent skills + descriptions |
+
+Opt out of any of them per project:
+
+```js
+// codesight.config.js
+export default { disableDetectors: ["cicd", "githooks", "skills"] };
+```
+
+**Terraform is opt-in**, not auto-loaded — it deliberately reaches outside the
+scanned directory (sibling `../infrastructure` repos) and is most useful with an
+explicit service name, so it stays off until you ask for it:
+
+```js
+// codesight.config.js
+import { createTerraformPlugin } from "codesight/plugins/terraform";
+export default { plugins: [createTerraformPlugin({ infraPath: "../infra" })] };
+```
 
 ## Routes
 

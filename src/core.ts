@@ -15,6 +15,7 @@ import { detectTestCoverage } from "./detectors/coverage.js";
 import { detectOpenAPISpec } from "./detectors/openapi.js";
 import { writeOutput, computeCrudGroups } from "./formatter.js";
 import { resolveNativeAst } from "./ast/native-loader.js";
+import { createBuiltinPlugins } from "./plugins/index.js";
 import { createRequire } from "node:module";
 import type { ScanResult, CodesightConfig } from "./types.js";
 
@@ -98,10 +99,14 @@ export async function scan(
     }
   }
 
-  // Step 3b: Run plugin detectors
+  // Step 3b: Run plugin detectors. Built-in plugins (cicd/githooks/skills) run
+  // by default — each self-gates to nothing when its target files are absent —
+  // followed by any user-supplied plugins. Opt out of a built-in via
+  // disableDetectors: ["cicd"]. terraform is opt-in only (see plugins/index.ts).
   const customSections: { name: string; content: string }[] = [];
-  if (userConfig.plugins) {
-    for (const plugin of userConfig.plugins) {
+  const activePlugins = [...createBuiltinPlugins(disabled), ...(userConfig.plugins ?? [])];
+  if (activePlugins.length > 0) {
+    for (const plugin of activePlugins) {
       if (plugin.detector) {
         try {
           const pluginResult = await plugin.detector(files, project);
