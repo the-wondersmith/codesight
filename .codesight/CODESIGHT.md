@@ -2,9 +2,9 @@
 
 > **Stack:** raw-http | none | unknown | typescript
 
-> 4 routes (8 inferred) + 1 graphql + 3 ws | 0 models | 0 components | 65 lib files | 10 env vars | 5 middleware | 13 events | 60% test coverage
-> **Token savings:** this file is ~5,400 tokens. Without it, AI exploration would cost ~34,300 tokens. **Saves ~28,900 tokens per conversation.**
-> **Last scanned:** 2026-06-27 21:21 — re-run after significant changes
+> 4 routes (8 inferred) + 1 graphql + 3 ws | 0 models | 0 components | 66 lib files | 10 env vars | 5 middleware | 13 events | 60% test coverage
+> **Token savings:** this file is ~5,500 tokens. Without it, AI exploration would cost ~34,500 tokens. **Saves ~29,100 tokens per conversation.**
+> **Last scanned:** 2026-06-27 23:35 — re-run after significant changes
 
 ---
 
@@ -32,11 +32,12 @@
 
 - `reference/ast-plugin/assembly/index.ts`
   - function contractVersion: () => i32
+  - function describe: () => i64
   - function alloc: (len) => i32
   - function dealloc: (ptr, len) => void
   - function parseRoutes: (srcPtr, srcLen) => i64
   - function parseSchemas: (srcPtr, srcLen) => i64
-  - function parseImports: (srcPtr, srcLen) => i64
+  - _...1 more_
 - `src/ast/extract-android.ts`
   - function extractRetrofitRoutes: (filePath, content, tags) => RouteInfo[]
   - function extractRoomEntities: (_filePath, content) => SchemaModel[]
@@ -101,10 +102,10 @@
   - function resolveNativeAst: (cfg, projectRoot) => NativeAstResolved
   - function nativeEnabledFor: (r, lang) => boolean
   - function isStrict: (r) => boolean
+  - function buildNativeRegistry: (r) => NativeRegistry
   - function nativePluginFor: (lang, kind, r) => NativePlugin | null
   - function recordParseError: (r, lang, kind, file, err) => void
-  - function reportNativeDiagnostics: (diagnostics) => string
-  - _...2 more_
+  - _...5 more_
 - `src/config.ts`
   - function loadConfig: (root) => Promise<CodesightConfig>
   - function safeParseConfigText: (content) => CodesightConfig
@@ -134,8 +135,16 @@
   - type Name
   - _...2 more_
 - `src/detectors/middleware.ts` — function detectMiddleware: (files, project) => Promise<MiddlewareInfo[]>
+- `src/detectors/native.ts`
+  - function detectNative: (files, project, resolved) => Promise<NativeExtraction>
+  - function mergeNativeRoutes: (builtin, native, resolved, registry) => RouteInfo[]
+  - function mergeNativeSchemas: (builtin, native) => SchemaModel[]
+  - interface NativeExtraction
 - `src/detectors/openapi.ts` — function detectOpenAPISpec: (root, project) => Promise<OpenAPIResult>, interface OpenAPIResult
-- `src/detectors/routes.ts` — function detectRoutes: (files, project, config?) => Promise<RouteInfo[]>, const GET
+- `src/detectors/routes.ts`
+  - function detectTags: (content) => string[]
+  - function detectRoutes: (files, project, config?) => Promise<RouteInfo[]>
+  - const GET
 - `src/detectors/schema.ts` — function detectSchemas: (files, project, config?) => Promise<SchemaModel[]>, const users
 - `src/detectors/tokens.ts` — function estimateTokens: (text) => number, function calculateTokenStats: (result, outputText, fileCount) => import("../types.js").TokenStats
 - `src/eval.ts` — function runEval: () => Promise<void>
@@ -202,12 +211,13 @@
   - interface TelemetryTask
   - interface TelemetryReport
 - `src/wasm/plugin-host.ts`
+  - function listPluginFiles: (pluginDirs) => PluginFile[]
   - function setNativePluginProvider: (fn) => void
   - function resetNativePluginProvider: () => void
   - function loadPlugin: (lang, pluginDirs) => LoadedPlugin | null
   - function bindExports: (rawExports) => LoadedPlugin | null
   - interface LoadedPlugin
-  - type PluginProvider
+  - _...2 more_
 
 ---
 
@@ -250,15 +260,14 @@
 
 ## Most Imported Files (change these carefully)
 
-- `src/types.ts` — imported by **50** files
-- `src/scanner.ts` — imported by **16** files
+- `src/types.ts` — imported by **51** files
+- `src/scanner.ts` — imported by **17** files
 - `src/ast/loader.ts` — imported by **6** files
 - `src/plugins/terraform/types.ts` — imported by **6** files
 - `src/ast/extract-brightscript.ts` — imported by **5** files
 - `src/plugins/cicd/types.ts` — imported by **5** files
 - `src/plugins/githooks/types.ts` — imported by **5** files
-- `src/ast/native-loader.ts` — imported by **4** files
-- `src/detectors/routes.ts` — imported by **3** files
+- `src/detectors/routes.ts` — imported by **4** files
 - `src/detectors/schema.ts` — imported by **3** files
 - `src/detectors/components.ts` — imported by **3** files
 - `src/detectors/config.ts` — imported by **3** files
@@ -270,19 +279,20 @@
 - `src/ast/extract-scenegraph.ts` — imported by **3** files
 - `src/ast/extract-csharp.ts` — imported by **3** files
 - `src/ast/extract-php.ts` — imported by **3** files
+- `src/generators/ai-config.ts` — imported by **3** files
 
 ## Import Map (who imports what)
 
-- `src/types.ts` ← `src/ast/extract-android.ts`, `src/ast/extract-brighterscript.ts`, `src/ast/extract-brightscript.ts`, `src/ast/extract-components.ts`, `src/ast/extract-csharp.ts` +45 more
-- `src/scanner.ts` ← `src/core.ts`, `src/detectors/components.ts`, `src/detectors/config.ts`, `src/detectors/contracts.ts`, `src/detectors/coverage.ts` +11 more
+- `src/types.ts` ← `src/ast/extract-android.ts`, `src/ast/extract-brighterscript.ts`, `src/ast/extract-brightscript.ts`, `src/ast/extract-components.ts`, `src/ast/extract-csharp.ts` +46 more
+- `src/scanner.ts` ← `src/core.ts`, `src/detectors/components.ts`, `src/detectors/config.ts`, `src/detectors/contracts.ts`, `src/detectors/coverage.ts` +12 more
 - `src/ast/loader.ts` ← `src/ast/extract-components.ts`, `src/ast/extract-routes.ts`, `src/ast/extract-schema.ts`, `src/detectors/components.ts`, `src/detectors/routes.ts` +1 more
 - `src/plugins/terraform/types.ts` ← `src/plugins/terraform/file-collector.ts`, `src/plugins/terraform/formatter.ts`, `src/plugins/terraform/hcl-parser.ts`, `src/plugins/terraform/index.ts`, `src/plugins/terraform/index.ts` +1 more
 - `src/ast/extract-brightscript.ts` ← `src/ast/extract-brighterscript.ts`, `src/detectors/events.ts`, `src/detectors/libs.ts`, `src/detectors/middleware.ts`, `src/detectors/routes.ts`
 - `src/plugins/cicd/types.ts` ← `src/plugins/cicd/circleci.ts`, `src/plugins/cicd/formatter.ts`, `src/plugins/cicd/github-actions.ts`, `src/plugins/cicd/index.ts`, `src/plugins/cicd/index.ts`
 - `src/plugins/githooks/types.ts` ← `src/plugins/githooks/formatter.ts`, `src/plugins/githooks/husky.ts`, `src/plugins/githooks/index.ts`, `src/plugins/githooks/lefthook.ts`, `src/plugins/githooks/raw.ts`
-- `src/ast/native-loader.ts` ← `src/core.ts`, `src/detectors/routes.ts`, `src/detectors/schema.ts`, `src/index.ts`
-- `src/detectors/routes.ts` ← `src/core.ts`, `src/eval.ts`, `src/mcp-server.ts`
+- `src/detectors/routes.ts` ← `src/core.ts`, `src/detectors/native.ts`, `src/eval.ts`, `src/mcp-server.ts`
 - `src/detectors/schema.ts` ← `src/core.ts`, `src/eval.ts`, `src/mcp-server.ts`
+- `src/detectors/components.ts` ← `src/core.ts`, `src/eval.ts`, `src/mcp-server.ts`
 
 ---
 

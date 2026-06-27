@@ -2,11 +2,12 @@
 
 - `reference/ast-plugin/assembly/index.ts`
   - function contractVersion: () => i32
+  - function describe: () => i64
   - function alloc: (len) => i32
   - function dealloc: (ptr, len) => void
   - function parseRoutes: (srcPtr, srcLen) => i64
   - function parseSchemas: (srcPtr, srcLen) => i64
-  - function parseImports: (srcPtr, srcLen) => i64
+  - _...1 more_
 - `src/ast/extract-android.ts`
   - function extractRetrofitRoutes: (filePath, content, tags) => RouteInfo[]
   - function extractRoomEntities: (_filePath, content) => SchemaModel[]
@@ -71,10 +72,10 @@
   - function resolveNativeAst: (cfg, projectRoot) => NativeAstResolved
   - function nativeEnabledFor: (r, lang) => boolean
   - function isStrict: (r) => boolean
+  - function buildNativeRegistry: (r) => NativeRegistry
   - function nativePluginFor: (lang, kind, r) => NativePlugin | null
   - function recordParseError: (r, lang, kind, file, err) => void
-  - function reportNativeDiagnostics: (diagnostics) => string
-  - _...2 more_
+  - _...5 more_
 - `src/config.ts`
   - function loadConfig: (root) => Promise<CodesightConfig>
   - function safeParseConfigText: (content) => CodesightConfig
@@ -104,8 +105,16 @@
   - type Name
   - _...2 more_
 - `src/detectors/middleware.ts` — function detectMiddleware: (files, project) => Promise<MiddlewareInfo[]>
+- `src/detectors/native.ts`
+  - function detectNative: (files, project, resolved) => Promise<NativeExtraction>
+  - function mergeNativeRoutes: (builtin, native, resolved, registry) => RouteInfo[]
+  - function mergeNativeSchemas: (builtin, native) => SchemaModel[]
+  - interface NativeExtraction
 - `src/detectors/openapi.ts` — function detectOpenAPISpec: (root, project) => Promise<OpenAPIResult>, interface OpenAPIResult
-- `src/detectors/routes.ts` — function detectRoutes: (files, project, config?) => Promise<RouteInfo[]>, const GET
+- `src/detectors/routes.ts`
+  - function detectTags: (content) => string[]
+  - function detectRoutes: (files, project, config?) => Promise<RouteInfo[]>
+  - const GET
 - `src/detectors/schema.ts` — function detectSchemas: (files, project, config?) => Promise<SchemaModel[]>, const users
 - `src/detectors/tokens.ts` — function estimateTokens: (text) => number, function calculateTokenStats: (result, outputText, fileCount) => import("../types.js").TokenStats
 - `src/eval.ts` — function runEval: () => Promise<void>
@@ -172,9 +181,10 @@
   - interface TelemetryTask
   - interface TelemetryReport
 - `src/wasm/plugin-host.ts`
+  - function listPluginFiles: (pluginDirs) => PluginFile[]
   - function setNativePluginProvider: (fn) => void
   - function resetNativePluginProvider: () => void
   - function loadPlugin: (lang, pluginDirs) => LoadedPlugin | null
   - function bindExports: (rawExports) => LoadedPlugin | null
   - interface LoadedPlugin
-  - type PluginProvider
+  - _...2 more_

@@ -11,7 +11,7 @@ The Path subsystem handles **1 routes** and touches: auth, db, cache, queue, ema
 
 ## High-Impact Files
 
-- `src/detectors/routes.ts` — imported by 3 files
+- `src/detectors/routes.ts` — imported by 4 files
 
 ## Source Files
 

@@ -2,7 +2,7 @@
 
 > **Navigation aid.** Library inventory extracted via AST. Read the source files listed here before modifying exported functions.
 
-**65 library files** across 14 modules
+**66 library files** across 14 modules
 
 ## Plugins (19 files)
 
@@ -26,10 +26,29 @@
 - `src/plugins/terraform/formatter.ts` — formatInfrastructure
 - `src/plugins/terraform/index.ts` — createTerraformPlugin
 
+## Detectors (16 files)
+
+- `src/detectors/libs.ts` — detectLibs, name, name, Name, Name, Name, …
+- `src/detectors/native.ts` — detectNative, mergeNativeRoutes, mergeNativeSchemas, NativeExtraction
+- `src/detectors/graphql.ts` — detectGraphQLRoutes, detectGRPCRoutes, detectWebSocketRoutes
+- `src/detectors/routes.ts` — detectTags, detectRoutes, GET
+- `src/detectors/blast-radius.ts` — analyzeBlastRadius, analyzeMultiFileBlastRadius
+- `src/detectors/components.ts` — detectComponents, ComponentName
+- `src/detectors/coverage.ts` — isTestFile, detectTestCoverage
+- `src/detectors/openapi.ts` — detectOpenAPISpec, OpenAPIResult
+- `src/detectors/schema.ts` — detectSchemas, users
+- `src/detectors/tokens.ts` — estimateTokens, calculateTokenStats
+- `src/detectors/config.ts` — detectConfig
+- `src/detectors/contracts.ts` — enrichRouteContracts
+- `src/detectors/events.ts` — detectEvents
+- `src/detectors/graph.ts` — detectDependencyGraph
+- `src/detectors/knowledge.ts` — detectKnowledge
+- `src/detectors/middleware.ts` — detectMiddleware
+
 ## Ast (15 files)
 
 - `src/ast/extract-brightscript.ts` — extractBrightScriptFunctions, extractBrightScriptObservers, extractBrightScriptNavigationCalls, extractBrightScriptShowScreenCalls, extractBrightScriptGraphqlCalls, extractBrightScriptGlobalFields, …
-- `src/ast/native-loader.ts` — resolveNativeAst, nativeEnabledFor, isStrict, nativePluginFor, recordParseError, reportNativeDiagnostics, …
+- `src/ast/native-loader.ts` — resolveNativeAst, nativeEnabledFor, isStrict, buildNativeRegistry, nativePluginFor, recordParseError, …
 - `src/ast/loader.ts` — loadTypeScript, resetCache, parseSourceFile, getDecorators, parseDecorator, getText
 - `src/ast/extract-android.ts` — extractRetrofitRoutes, extractRoomEntities, extractComposeComponents, extractNavigationRoutes, extractActivitiesFromManifest
 - `src/ast/extract-python.ts` — extractPythonRoutesAST, extractSQLAlchemyAST, extractDjangoModelsAST, extractSQLModelAST, isPythonAvailable
@@ -43,24 +62,6 @@
 - `src/ast/extract-brighterscript.ts` — extractBrighterScriptImports, extractBrighterScriptExports
 - `src/ast/extract-schema.ts` — extractDrizzleSchemaAST, extractTypeORMSchemaAST
 - `src/ast/extract-routes.ts` — extractRoutesAST
-
-## Detectors (15 files)
-
-- `src/detectors/libs.ts` — detectLibs, name, name, Name, Name, Name, …
-- `src/detectors/graphql.ts` — detectGraphQLRoutes, detectGRPCRoutes, detectWebSocketRoutes
-- `src/detectors/blast-radius.ts` — analyzeBlastRadius, analyzeMultiFileBlastRadius
-- `src/detectors/components.ts` — detectComponents, ComponentName
-- `src/detectors/coverage.ts` — isTestFile, detectTestCoverage
-- `src/detectors/openapi.ts` — detectOpenAPISpec, OpenAPIResult
-- `src/detectors/routes.ts` — detectRoutes, GET
-- `src/detectors/schema.ts` — detectSchemas, users
-- `src/detectors/tokens.ts` — estimateTokens, calculateTokenStats
-- `src/detectors/config.ts` — detectConfig
-- `src/detectors/contracts.ts` — enrichRouteContracts
-- `src/detectors/events.ts` — detectEvents
-- `src/detectors/graph.ts` — detectDependencyGraph
-- `src/detectors/knowledge.ts` — detectKnowledge
-- `src/detectors/middleware.ts` — detectMiddleware
 
 ## Monorepo (4 files)
 
@@ -97,7 +98,7 @@
 
 ## Reference (1 files)
 
-- `reference/ast-plugin/assembly/index.ts` — contractVersion, alloc, dealloc, parseRoutes, parseSchemas, parseImports
+- `reference/ast-plugin/assembly/index.ts` — contractVersion, describe, alloc, dealloc, parseRoutes, parseSchemas, …
 
 ## Scanner.ts (1 files)
 
@@ -109,7 +110,7 @@
 
 ## Wasm (1 files)
 
-- `src/wasm/plugin-host.ts` — setNativePluginProvider, resetNativePluginProvider, loadPlugin, bindExports, LoadedPlugin, PluginProvider
+- `src/wasm/plugin-host.ts` — listPluginFiles, setNativePluginProvider, resetNativePluginProvider, loadPlugin, bindExports, LoadedPlugin, …
 
 ---
 _Back to [overview.md](./overview.md)_
