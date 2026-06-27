@@ -166,7 +166,9 @@ export function buildNativeRegistry(r: NativeAstResolved): NativeRegistry {
     }
 
     // `describe().languageId` is authoritative for identity; filename is fallback.
-    const reported = loaded.metadata?.languageId;
+    // Coerce defensively — metadata is untrusted plugin output (a non-string id
+    // is ignored rather than allowed to crash the registry build).
+    const reported = typeof loaded.metadata?.languageId === "string" ? loaded.metadata.languageId : undefined;
     const lang = reported && reported.length > 0 ? reported : requested;
     if (reported && reported.length > 0 && reported !== requested) {
       addWarning(
@@ -181,7 +183,11 @@ export function buildNativeRegistry(r: NativeAstResolved): NativeRegistry {
       }
     }
 
-    const declared = loaded.metadata?.extensions;
+    // Untrusted: keep only string entries so a malformed array (numbers, null,
+    // objects) can't throw out of the registry build and crash the scan.
+    const declared = Array.isArray(loaded.metadata?.extensions)
+      ? loaded.metadata.extensions.filter((e): e is string => typeof e === "string")
+      : undefined;
     const exts = (declared && declared.length > 0 ? declared : DEFAULT_EXTENSIONS[lang]) ?? [];
     if (exts.length === 0) {
       if (r.mode === "strict") {
