@@ -2,11 +2,12 @@
 
 > **Navigation aid.** Library inventory extracted via AST. Read the source files listed here before modifying exported functions.
 
-**66 library files** across 14 modules
+**67 library files** across 14 modules
 
-## Plugins (19 files)
+## Plugins (20 files)
 
 - `src/plugins/terraform/hcl-parser.ts` — parseHclFile, parseTfvars, stripComments, extractBraceBlock
+- `plugins/ast/golang/main.go` — Route, Field, Model
 - `src/plugins/terraform/file-collector.ts` — collectTfFiles, readFileSafe, CollectedFiles
 - `src/plugins/terraform/service-matcher.ts` — matchServiceBlocks, normaliseServiceName, ScoredBlock
 - `src/plugins/cicd/index.ts` — createCICDPlugin, CICDPluginConfig

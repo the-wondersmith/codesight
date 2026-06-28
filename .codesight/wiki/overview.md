@@ -6,7 +6,7 @@
 
 ## Scale
 
-8 API routes · 66 library files · 5 middleware layers · 10 environment variables
+8 API routes · 67 library files · 5 middleware layers · 10 environment variables
 
 ## Subsystems
 
@@ -16,7 +16,7 @@
 - **[Infra](./infra.md)** — 1 routes — touches: auth, db, cache, queue, payment
 - **[Api](./api.md)** — 1 routes — touches: auth, db, cache, queue, email
 
-**Libraries:** 66 files — see [libraries.md](./libraries.md)
+**Libraries:** 67 files — see [libraries.md](./libraries.md)
 
 ## High-Impact Files
 
@@ -42,4 +42,4 @@ Changes to these files have the widest blast radius across the codebase:
 - `XDG_DATA_HOME` — `src/ast/native-loader.ts`
 
 ---
-_Back to [index.md](./index.md) · Generated 2026-06-27_
+_Back to [index.md](./index.md) · Generated 2026-06-28_

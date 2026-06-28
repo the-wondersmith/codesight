@@ -1,5 +1,9 @@
 # Libraries
 
+- `plugins/ast/golang/main.go`
+  - class Route
+  - class Field
+  - class Model
 - `reference/ast-plugin/assembly/index.ts`
   - function contractVersion: () => i32
   - function describe: () => i64
